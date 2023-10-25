@@ -1,0 +1,6 @@
+[package]
+authors = ["onurinanc"]
+compiler_version = "0.9.0"
+
+[dependencies]
+bigint = {path = "../noir-bigint-bls12_381"}
