@@ -26,8 +26,7 @@ BLS12_381 is a pairing-friendly elliptic curve construction. This includes two e
 G1 curve is `y^2 = x^3 + 4`
 Field modulus is `4002409555221667393417789825735904156556882819939007885332058136124031650490837864442687629129015664037894272559787`
 The order of the elliptic curves is `52435875175126190479447740508185965837690552500527637822603658699938581184513`
-The generator of the G1 is the (3685416753713387016781088315183077757961620795782546409894578378688607592378376318836054947676345821548104185464507, 1339506544944476473020471379941921221584933875938349620426543736416511423956333506472724655353366534992391756441569)
-
+The generator of the G1 is the `(3685416753713387016781088315183077757961620795782546409894578378688607592378376318836054947676345821548104185464507, 1339506544944476473020471379941921221584933875938349620426543736416511423956333506472724655353366534992391756441569)`
 The method and parameters for constructing the G1 curve is in the src/bls12_381.nr
 
 ```
@@ -221,12 +220,12 @@ The compilation time for the pairing function is less than [circom-pairing][http
 The compilation time for BLS12_381 Signature Verification is approximately `2.4 h`, it is also less than [circom-pairing][https://github.com/yi-sun/circom-pairing#benchmarks], which is computed with a machine with better properties states that it is `3.2 h`
 
 For testing purposes:
-- Compilation time for the final_exponentiation takes ~8 minutes
-- Compilation time for the miller_loop takes ~64 minutes: so you can reduce to loop to test. So, the following are the smaller loops for testing miller_loop:
-    - for i in 0..2    -> ~0.5 minutes
-    - for i in 0..8    -> ~4 minutes
-    - for i in 0..10   -> ~6 minutes
-    - for i in 0.12    -> ~8 minutes
+- Compilation time for the `final_exponentiation` takes `~8 minutes`
+- Compilation time for the miller_loop takes `~64 minutes`: so you can reduce to loop to test. So, the following are the smaller loops for testing `miller_loop`:
+    - `for i in 0..2`    -> `~0.5 minutes`
+    - `for i in 0..8`    -> `~4 minutes`
+    - `for i in 0..10`   -> `~6 minutes`
+    - `for i in 0.12`    -> `~8 minutes`
 
 ## Contributing
 
