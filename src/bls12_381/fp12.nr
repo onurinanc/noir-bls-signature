@@ -311,7 +311,17 @@ impl Fp12 {
         }
     }
 
-    fn n_square(self: Self, N: comptime Field) -> Self {
+    //fn n_square(self: Self, N: comptime Field) -> Self {
+    //    let mut out = self;
+//
+    //    for i in 0..2 {
+    //        out = out.cyclotomic_square();
+    //    }
+//
+    //    out
+    //}
+
+    fn n_square(self: Self, N: Field) -> Self {
         let mut out = self;
 
         for i in 0..2 {
@@ -322,10 +332,15 @@ impl Fp12 {
     }
 
     fn exponentiation(self: Self) -> Self {
-        let six: comptime Field = 6;
-        let seven: comptime Field = 7;
-        let eight: comptime Field = 8;
-        let ten: comptime Field = 10;
+        //let six: comptime Field = 6;
+        //let seven: comptime Field = 7;
+        //let eight: comptime Field = 8;
+        //let ten: comptime Field = 10;
+
+        let six: Field = 6;
+        let seven: Field = 7;
+        let eight: Field = 8;
+        let ten: Field = 10;
 
         let t3 = self.cyclotomic_square();
         let t5 = t3.cyclotomic_square();
