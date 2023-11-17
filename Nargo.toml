@@ -1,6 +1,8 @@
 [package]
+name = "bls12_381"
+type = "lib"
 authors = ["onurinanc"]
-compiler_version = "0.9.0"
+compiler_version = "0.17.0"
 
 [dependencies]
 bigint = {path = "../noir-bigint-bls12_381"}

@@ -70,9 +70,6 @@ impl G2Point {
 impl G2Curve {
     // Curve constructor
     fn new(a: Fp2, b: Fp2, gen: G2Point) -> G2Curve {
-        // Check curve coefficients
-        //assert(!(Fp::from_u56(4).mul(a.square().mul(a)).add(Fp::from_u56(27).mul(b.square()))).is_zero());
-
         let curve = G2Curve { a, b, gen };
 
         // gen should be on the curve
@@ -127,10 +124,8 @@ impl G2Curve {
 
                 let hh = h.square();
                 let hhh = hh.mul(h);
-                // BUG: Doesn't work in a single line
                 let mut x3 = r.square().sub(hhh);
                 x3 = x3.sub(you1.mul(hh).double());
-                // BUG: Doesn't work in a single line
                 let mut y3 = r.mul(you1.mul(hh).sub(x3));
                 y3 = y3.sub(s1.mul(hhh));
                 let z3 = h.mul(z1).mul(z2);
@@ -177,7 +172,7 @@ impl G2Curve {
 
         for i in 0..2 {
             out = self.double(out);
-            if(n_as_bits[i] == 1) {
+            if n_as_bits[i] == 1 {
                 out = self.add(out, p);
             }
         }

@@ -207,7 +207,7 @@ impl Curve {
 
         for i in 0..2 {
             out = self.double(out);
-            if(n_as_bits[i] == 1) {
+            if n_as_bits[i] == 1 {
                 out = self.add(out, p);
             }
         }
