@@ -81,72 +81,149 @@ fn line_function_double_point(q: G2Point, p: Point) -> LineEval {
 }
 
 // Algorithm 27 from: https://eprint.iacr.org/2010/354.pdf
-fn line_function_add_point(q: G2Point, r: G2Point, p: Point) -> LineEval {
-    let t0 = q.x.mul(r.z.square());
-    let t1 = q.y.add(r.z);
-    let t1 = t1.square();
-    let t1 = t1.sub(q.y.square());
-    let t1 = t1.sub(r.z.square());
-    let t1 = t1.mul(r.z.square());
-    let t2 = t0.sub(r.x);
-    let t3 = t2.square();
-    let t4 = t3.double();
-    let t4 = t4.double();
-    let t5 = t4.mul(t2);
-    let t6 = t1.sub(r.y.double());
-    let t9 = t6.mul(q.x);
-    let t7 = r.x.mul(t4);
-    let X_T = t6.square();
-    let X_T = X_T.sub(t5);
-    let X_T = X_T.sub(t7.double());
-    let Z_T = r.z.add(t2);
-    let Z_T = Z_T.square();
-    let Z_T = Z_T.sub(r.z.square());
-    let Z_T = Z_T.sub(t3);
-    let t10 = q.y.add(Z_T);
-    let t8 = t7.sub(X_T);
-    let t8 = t8.mul(t6);
-    let t0 = r.y.mul(t5);
-    let t0 = t0.double();
-    let Y_T = t8.sub(t0);
-    let t10 = t10.square();
-    let t10 = t10.sub(q.y.square());
-    let t10 = t10.sub(Z_T.square());
-    let t9 = t9.double();
-    let t9 = t9.sub(t10);
-    let t10 = Z_T.mul_by_b0(p.y);
-    let t10 = t10.double();
-    let t6 = t6.neg();
-    let t1 = t6.mul_by_b0(p.x);
-    let t1 = t1.double();
+//fn line_function_add_point(q: G2Point, r: G2Point, p: Point) -> LineEval {
+//    let t0 = q.x.mul(r.z.square());
+//    let t1 = q.y.add(r.z);
+//    let t1 = t1.square();
+//    let t1 = t1.sub(q.y.square());
+//    let t1 = t1.sub(r.z.square());
+//    let t1 = t1.mul(r.z.square());
+//    let t2 = t0.sub(r.x);
+//    let t3 = t2.square();
+//    let t4 = t3.double();
+//    let t4 = t4.double();
+//    let t5 = t4.mul(t2);
+//    let t6 = t1.sub(r.y.double());
+//    let t9 = t6.mul(q.x);
+//    let t7 = r.x.mul(t4);
+//    let X_T = t6.square();
+//    let X_T = X_T.sub(t5);
+//    let X_T = X_T.sub(t7.double());
+//    let Z_T = r.z.add(t2);
+//    let Z_T = Z_T.square();
+//    let Z_T = Z_T.sub(r.z.square());
+//    let Z_T = Z_T.sub(t3);
+//    let t10 = q.y.add(Z_T);
+//    let t8 = t7.sub(X_T);
+//    let t8 = t8.mul(t6);
+//    let t0 = r.y.mul(t5);
+//    let t0 = t0.double();
+//    let Y_T = t8.sub(t0);
+//    let t10 = t10.square();
+//    let t10 = t10.sub(q.y.square());
+//    let t10 = t10.sub(Z_T.square());
+//    let t9 = t9.double();
+//    let t9 = t9.sub(t10);
+//    let t10 = Z_T.mul_by_b0(p.y);
+//    let t10 = t10.double();
+//    let t6 = t6.neg();
+//    let t1 = t6.mul_by_b0(p.x);
+//    let t1 = t1.double();
+//
+//    let l0 = Fp6::new(
+//        t10,
+//        Fp2::zero(),
+//        Fp2::zero(),
+//    );
+//
+//    let l1 = Fp6::new(
+//        t1,
+//        t9,
+//        Fp2::zero(),
+//    );
+//
+//    let l = Fp12::new(
+//        l0,
+//        l1,
+//    );
+//
+//    let T = G2Point{
+//        x: X_T,
+//        y: Y_T,
+//        z: Z_T,
+//    };
+//
+//    LineEval{
+//        l,
+//        T,
+//    }
+//}
 
-    let l0 = Fp6::new(
-        t10,
-        Fp2::zero(),
-        Fp2::zero(),
-    );
+fn line_function_add_point(q: G2Point, r: G2Point, p: Point) -> G2Point {
+    //let t0 = q.x.mul(r.z.square());
 
-    let l1 = Fp6::new(
-        t1,
-        t9,
-        Fp2::zero(),
-    );
+    // Copy and paste the above statement
+    let zbam = r.z.square();
+    let t0 = q.x.mul(zbam);
+    
+    //let t1 = q.y.add(r.z);
+    //let t1 = t1.square();
+    //let t1 = t1.sub(q.y.square());
+    //let t1 = t1.sub(r.z.square());
+    //let t1 = t1.mul(r.z.square());
+    //let t2 = t0.sub(r.x);
+    //let t3 = t2.square();
+    //let t4 = t3.double();
+    //let t4 = t4.double();
+    //let t5 = t4.mul(t2);
+    //let t6 = t1.sub(r.y.double());
+    //let t9 = t6.mul(q.x);
+    //let t7 = r.x.mul(t4);
+    //let X_T = t6.square();
+    //let X_T = X_T.sub(t5);
+    //let X_T = X_T.sub(t7.double());
+    //let Z_T = r.z.add(t2);
+    //let Z_T = Z_T.square();
+    //let Z_T = Z_T.sub(r.z.square());
+    //let Z_T = Z_T.sub(t3);
+    //let t10 = q.y.add(Z_T);
+    //let t8 = t7.sub(X_T);
+    //let t8 = t8.mul(t6);
+    //let t0 = r.y.mul(t5);
+    //let t0 = t0.double();
+    //let Y_T = t8.sub(t0);
+    //let t10 = t10.square();
+    //let t10 = t10.sub(q.y.square());
+    //let t10 = t10.sub(Z_T.square());
+    //let t9 = t9.double();
+    //let t9 = t9.sub(t10);
+    //let t10 = Z_T.mul_by_b0(p.y);
+    //let t10 = t10.double();
+    //let t6 = t6.neg();
+    //let t1 = t6.mul_by_b0(p.x);
+    //let t1 = t1.double();
+//
+    //let l0 = Fp6::new(
+    //    t10,
+    //    Fp2::zero(),
+    //    Fp2::zero(),
+    //);
+//
+    //let l1 = Fp6::new(
+    //    t1,
+    //    t9,
+    //    Fp2::zero(),
+    //);
+//
+    //let l = Fp12::new(
+    //    l0,
+    //    l1,
+    //);
 
-    let l = Fp12::new(
-        l0,
-        l1,
-    );
+    //let T = G2Point{
+    //    x: X_T,
+    //    y: Y_T,
+    //    z: Z_T,
+    //};
 
+    // Copy and paste above
     let T = G2Point{
-        x: X_T,
-        y: Y_T,
-        z: Z_T,
+        x: t0,
+        y: t0,
+        z: t0,
     };
 
-    LineEval{
-        l,
-        T,
-    }
+    T
 }
 
 fn final_exponentiation(z: Fp12) -> Fp12 {
@@ -158,61 +235,61 @@ fn final_exponentiation(z: Fp12) -> Fp12 {
     let t0 = t0.mul(result);
     let result = t0.frobenius_square();
     let result = result.mul(t0);
-
+    result // add result for testing reason
     // Hard part
     // https://eprint.iacr.org/2015/192.pdf
 
-    let t0 = result.exponentiation();
-    let t0 = t0.conjugate();
-    let t0 = t0.cyclotomic_square();
-    let t2 = t0.exponentiation();
-    let t2 = t2.conjugate();
-    let t1 = t2.cyclotomic_square();
-    let t2 = t2.mul(t1);
-    let t2 = t2.mul(result);
-    let t1 = t2.exponentiation();
-    let t1 = t1.cyclotomic_square();
-    let t1 = t1.mul(t2);
-    let t1 = t1.conjugate();
-    let t3 = t1.conjugate();
-    let t1 = t0.cyclotomic_square();
-    let t1 = t1.mul(result);
-    let t1 = t1.conjugate();
-    let t1 = t1.mul(t3);
-    let t0 = t0.mul(t1);
-    let t2 = t2.mul(t1);
-    let t3 = t1.frobenius_square();
-    let t2 = t2.mul(t3);
-    let t3 = result.conjugate();
-    let t3 = t3.mul(t0);
-    let t1 = t3.frobenius_cube();
-    let t2 = t2.mul(t1);
-    let t1 = t0.frobenius();
-    let t1 = t1.mul(t2);
-    t1
+    //let t0 = result.exponentiation();
+    //let t0 = t0.conjugate();
+    //let t0 = t0.cyclotomic_square();
+    //let t2 = t0.exponentiation();
+    //let t2 = t2.conjugate();
+    //let t1 = t2.cyclotomic_square();
+    //let t2 = t2.mul(t1);
+    //let t2 = t2.mul(result);
+    //let t1 = t2.exponentiation();
+    //let t1 = t1.cyclotomic_square();
+    //let t1 = t1.mul(t2);
+    //let t1 = t1.conjugate();
+    //let t3 = t1.conjugate();
+    //let t1 = t0.cyclotomic_square();
+    //let t1 = t1.mul(result);
+    //let t1 = t1.conjugate();
+    //let t1 = t1.mul(t3);
+    //let t0 = t0.mul(t1);
+    //let t2 = t2.mul(t1);
+    //let t3 = t1.frobenius_square();
+    //let t2 = t2.mul(t3);
+    //let t3 = result.conjugate();
+    //let t3 = t3.mul(t0);
+    //let t1 = t3.frobenius_cube();
+    //let t2 = t2.mul(t1);
+    //let t1 = t0.frobenius();
+    //let t1 = t1.mul(t2);
+    //t1
 }
 
 fn miller_loop(Q: G2Point, P: Point) -> Fp12 {
     let mut T = Q;
     let mut f = Fp12::one();
 
-    for i in 0..12 {
-        let line_evaluated = line_function_double_point(T, P);
-        f = f.square();
-        f = f.mul(line_evaluated.l);
-        T = line_evaluated.T;
-
-        if NAF_DIGIT[i] == 2 {
-            let Q_NEG = Q.negate();
-            let line_evaluated = line_function_add_point(T, Q_NEG, P);
-            f = f.mul(line_evaluated.l);
-            T = line_evaluated.T;
-        } else if NAF_DIGIT[i] == 1 {
-            let line_evaluated = line_function_add_point(T, Q, P);
-            f = f.mul(line_evaluated.l);
-            T = line_evaluated.T;
-        }
-    }
+    //for i in 0..2 {
+    //    let line_evaluated = line_function_double_point(T, P);
+    //    f = f.square();
+    //    f = f.mul(line_evaluated.l);
+    //    T = line_evaluated.T;
+//
+    //    if NAF_DIGIT[i] == 2 {
+    //        let Q_NEG = Q.negate();
+    //        let line_evaluated = line_function_add_point(T, Q_NEG, P);
+    //        f = f.mul(line_evaluated.l);
+    //        T = line_evaluated.T;
+    //    } else if NAF_DIGIT[i] == 1 {
+    //        let line_evaluated = line_function_add_point(T, Q, P);
+    //        f = f.mul(line_evaluated.l);
+    //        T = line_evaluated.T;
+    //    }
+    //}
 
     // Q1 <- pi_p(Q)
     let q1x = Q.x.conjugate();
@@ -228,20 +305,43 @@ fn miller_loop(Q: G2Point, P: Point) -> Fp12 {
     // Q2 is negated above to use directly in the line_function
     let Q2 = G2Point::from_affine(q2x, q2y);
 
+    //// Line eval with Q1
+    //let line_evaluated = line_function_add_point(T, Q1, P);
+    //f = f.mul(line_evaluated.l);
+    //T = line_evaluated.T
+//
+    ////Line eval with Q2
+    //let line_evaluated = line_function_add_point(T, Q2, P);
+    //let f = f.mul(line_evaluated.l);
+    //f
+
+    // Copy and paste the above one
     // Line eval with Q1
     let line_evaluated = line_function_add_point(T, Q1, P);
-    f = f.mul(line_evaluated.l);
-    T = line_evaluated.T;
+    f = f.mul(f);
+    T = line_evaluated;
 
-    // Line eval with Q2
-    let line_evaluated = line_function_add_point(T, Q2, P);
-    let f = f.mul(line_evaluated.l);
+    //Line eval with Q2
+    let zbam = line_function_add_point(T, Q2, P);
+    //f = f.mul(f);
+
+    // Above is not working
+    // Below is working
+    //f = f.add(f);
+    //f = f.add(f);
+    //f = f.add(f);
+    //f = f.add(f);
+    //f = f.add(f);
+    //f = f.add(f);
+    //f = f.add(f);
+    //f = f.add(f);
+    
     f
 }
 
 fn pair(Q: G2Point, P: Point) -> Fp12 {
     let res = miller_loop(Q, P);
-    let res = final_exponentiation(res);
+    //let res = final_exponentiation(res);
     res
 }
 
